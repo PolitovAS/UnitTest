@@ -1,8 +1,8 @@
 package task4;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
     Calculator calculator;
@@ -90,7 +90,13 @@ class CalculatorTest {
         assertEquals(4, calculator.add(2, 2), () -> "2 + 2 должно быть равно 4");
     }
 
+    @Test
+    @DisplayName("Проверка вычисления суммы с учетом скидки")
+    void testCalculateDiscount() {assertEquals(95, calculator.calculateDiscount(100, 5), "100 - (100 * 5%) должно быть равно 95");}
 
-
-
+    @Test
+    @DisplayName("Проверка исключений при вычислении суммы с учетом скидки ")
+    void testAssertThrowsCalculateDiscount() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.calculateDiscount(-1, 5));
+    }
 }
